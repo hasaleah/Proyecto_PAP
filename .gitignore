@@ -1,0 +1,20 @@
+# Eclipse
+.metadata/
+bin/
+tmp/
+.settings/
+.classpath
+.project
+
+# Archivos compilados
+*.class
+*.war
+*.ear
+
+# Archivos temporales
+*.log
+*.tmp
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
