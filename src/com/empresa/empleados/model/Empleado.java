@@ -119,6 +119,15 @@ public abstract class Empleado {
      */
     public abstract String getTipoEmpleado();
     
+    
+    
+    /**
+     * Método que debe ser implementado por las clases hijas
+     * para calcular el sueldo total incluyendo bonificaciones
+     * @return Sueldo total con bonificaciones
+     */
+    public abstract double calcularSueldoConBonificaciones();
+    
   
     //Método toString para mostrar información del empleado
     
