@@ -4,10 +4,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.ArrayList;
 
-/**
- * Clase Gerente que hereda de Empleado
- * Salario fijo de $5,000
- */
+//Salario fijo de $5,000
+
 public class Gerente extends Empleado {
     // Atributos específicos del gerente
     private String departamento;
@@ -15,12 +13,10 @@ public class Gerente extends Empleado {
     private int numeroEmpleadosACargo;
     private boolean tieneAutoEmpresa;
     
-    // Sueldo fijo para gerentes
+  
     private static final double SUELDO_GERENTE = 5000.00;
     
-    /**
-     * Constructor de la clase Gerente
-     */
+
     public Gerente(String nombres, String primerApellido, String segundoApellido,
                    String direccion, LocalDate fechaNacimiento, char sexo,
                    String telefono, String email, String departamento,
@@ -35,9 +31,8 @@ public class Gerente extends Empleado {
         this.equiposACargo = new ArrayList<>();
     }
     
-    /**
-     * Constructor alternativo sin equipos específicos
-     */
+    //Constructor alternativo 
+
     public Gerente(String nombres, String primerApellido, String segundoApellido,
                    String direccion, LocalDate fechaNacimiento, char sexo,
                    String telefono, String email, String departamento) {
@@ -45,13 +40,13 @@ public class Gerente extends Empleado {
              sexo, telefono, email, departamento, 0, false);
     }
     
-    // Getters específicos del gerente
+   
     public String getDepartamento() { return departamento; }
     public List<String> getEquiposACargo() { return equiposACargo; }
     public int getNumeroEmpleadosACargo() { return numeroEmpleadosACargo; }
     public boolean isTieneAutoEmpresa() { return tieneAutoEmpresa; }
     
-    // Setters específicos del gerente
+    
     public void setDepartamento(String departamento) { this.departamento = departamento; }
     public void setNumeroEmpleadosACargo(int numeroEmpleadosACargo) { 
         this.numeroEmpleadosACargo = numeroEmpleadosACargo; 
@@ -60,25 +55,23 @@ public class Gerente extends Empleado {
         this.tieneAutoEmpresa = tieneAutoEmpresa; 
     }
     
-    /**
-     * Agrega un equipo a la lista de equipos a cargo
-     */
+    //Agrega un equipo a la lista de equipos a cargo
+
     public void agregarEquipoACargo(String nombreEquipo) {
         if (!equiposACargo.contains(nombreEquipo)) {
             equiposACargo.add(nombreEquipo);
         }
     }
     
-    /**
-     * Remueve un equipo de la lista de equipos a cargo
-     */
+    //Elimina un equipo de la lista de equipos a cargo
     public void removerEquipoACargo(String nombreEquipo) {
         equiposACargo.remove(nombreEquipo);
     }
     
-    /**
-     * Calcula bonificación por gestión (ejemplo: 5% del sueldo base por cada 10 empleados)
-     */
+    
+    //===== EXTRA :) =====
+    //Calcula bonificación por gestión (ejemplo: 5% del sueldo base por cada 10 empleados)
+
     public double calcularBonificacionGestion() {
         if (numeroEmpleadosACargo >= 10) {
             int gruposDeDiez = numeroEmpleadosACargo / 10;
@@ -87,17 +80,13 @@ public class Gerente extends Empleado {
         return 0.0;
     }
     
-    /**
-     * Calcula bonificación por auto de empresa
-     */
+    //Calcula bonificación por auto de empresa
     public double calcularBonificacionAuto() {
         return tieneAutoEmpresa ? 200.00 : 0.0;
     }
     
-    /**
-     * Calcula el sueldo total incluyendo bonificaciones
-     * Para efectos de descuentos, se usa el sueldo base + bonificaciones
-     */
+    //Calcula el sueldo total incluyendo bonificaciones
+
     public double calcularSueldoConBonificaciones() {
         return sueldoBase + calcularBonificacionGestion() + calcularBonificacionAuto();
     }
@@ -116,9 +105,8 @@ public class Gerente extends Empleado {
         return sueldoConBonificaciones - (descuentoISSS + descuentoAFP + descuentoRenta);
     }
     
-    /**
-     * Calcula descuento de renta considerando bonificaciones
-     */
+    //Calcula descuento de renta considerando bonificaciones
+ 
     private double calcularDescuentoRentaConBonificaciones(double sueldoTotal) {
         if (sueldoTotal <= 472.00) {
             return 0.0;
@@ -131,26 +119,20 @@ public class Gerente extends Empleado {
         }
     }
     
-    /**
-     * Implementación del método abstracto de la clase padre
-     */
+   
     @Override
     public String getTipoEmpleado() {
         return "GERENTE";
     }
     
-    /**
-     * Obtiene información resumida del gerente
-     */
+  
     public String getResumenGerencial() {
         return String.format("Gerente %s - Depto: %s - Empleados a cargo: %d - Auto empresa: %s",
                 getNombreCompleto(), departamento, numeroEmpleadosACargo, 
                 tieneAutoEmpresa ? "Sí" : "No");
     }
+  
     
-    /**
-     * Override del método toString para incluir información específica del gerente
-     */
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
