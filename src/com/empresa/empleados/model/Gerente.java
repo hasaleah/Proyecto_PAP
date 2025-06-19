@@ -1,11 +1,10 @@
 package com.empresa.empleados.model;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-//Salario fijo de $5,000
-
+// Salario fijo de $5,000
 public class Gerente extends Empleado {
     // Atributos específicos del gerente
     private String departamento;
@@ -13,10 +12,8 @@ public class Gerente extends Empleado {
     private int numeroEmpleadosACargo;
     private boolean tieneAutoEmpresa;
     
-  
     private static final double SUELDO_GERENTE = 5000.00;
     
-
     public Gerente(String nombres, String primerApellido, String segundoApellido,
                    String direccion, LocalDate fechaNacimiento, char sexo,
                    String telefono, String email, String departamento,
@@ -31,8 +28,7 @@ public class Gerente extends Empleado {
         this.equiposACargo = new ArrayList<>();
     }
     
-    //Constructor alternativo 
-
+    // Constructor alternativo
     public Gerente(String nombres, String primerApellido, String segundoApellido,
                    String direccion, LocalDate fechaNacimiento, char sexo,
                    String telefono, String email, String departamento) {
@@ -40,13 +36,13 @@ public class Gerente extends Empleado {
              sexo, telefono, email, departamento, 0, false);
     }
     
-   
+    // Getters
     public String getDepartamento() { return departamento; }
     public List<String> getEquiposACargo() { return equiposACargo; }
     public int getNumeroEmpleadosACargo() { return numeroEmpleadosACargo; }
     public boolean isTieneAutoEmpresa() { return tieneAutoEmpresa; }
     
-    
+    // Setters
     public void setDepartamento(String departamento) { this.departamento = departamento; }
     public void setNumeroEmpleadosACargo(int numeroEmpleadosACargo) { 
         this.numeroEmpleadosACargo = numeroEmpleadosACargo; 
@@ -55,23 +51,19 @@ public class Gerente extends Empleado {
         this.tieneAutoEmpresa = tieneAutoEmpresa; 
     }
     
-    //Agrega un equipo a la lista de equipos a cargo
-
+    // Agrega un equipo a la lista de equipos a cargo
     public void agregarEquipoACargo(String nombreEquipo) {
         if (!equiposACargo.contains(nombreEquipo)) {
             equiposACargo.add(nombreEquipo);
         }
     }
     
-    //Elimina un equipo de la lista de equipos a cargo
+    // Elimina un equipo de la lista de equipos a cargo
     public void removerEquipoACargo(String nombreEquipo) {
         equiposACargo.remove(nombreEquipo);
     }
     
-    
-    //===== EXTRA :) =====
-    //Calcula bonificación por gestión (ejemplo: 5% del sueldo base por cada 10 empleados)
-
+    // Calcula bonificación por gestión (5% del sueldo base por cada 10 empleados)
     public double calcularBonificacionGestion() {
         if (numeroEmpleadosACargo >= 10) {
             int gruposDeDiez = numeroEmpleadosACargo / 10;
@@ -80,58 +72,27 @@ public class Gerente extends Empleado {
         return 0.0;
     }
     
-    //Calcula bonificación por auto de empresa
+    // Calcula bonificación por auto de empresa
     public double calcularBonificacionAuto() {
         return tieneAutoEmpresa ? 200.00 : 0.0;
     }
     
-    //Calcula el sueldo total incluyendo bonificaciones
-
-    public double calcularSueldoConBonificaciones() {
-        return sueldoBase + calcularBonificacionGestion() + calcularBonificacionAuto();
-    }
-    
-    /**
-     * Override del método calcularSalarioNeto para incluir bonificaciones
-     */
+    // Implementa el cálculo de bonificaciones totales
     @Override
-    public double calcularSalarioNeto() {
-        double sueldoConBonificaciones = calcularSueldoConBonificaciones();
-        // Calculamos descuentos sobre el sueldo total (base + bonificaciones)
-        double descuentoISSS = sueldoConBonificaciones * DESCUENTO_ISSS;
-        double descuentoAFP = sueldoConBonificaciones * DESCUENTO_AFP;
-        double descuentoRenta = calcularDescuentoRentaConBonificaciones(sueldoConBonificaciones);
-        
-        return sueldoConBonificaciones - (descuentoISSS + descuentoAFP + descuentoRenta);
+    public double calcularBonificaciones() {
+        return calcularBonificacionGestion() + calcularBonificacionAuto();
     }
     
-    //Calcula descuento de renta considerando bonificaciones
- 
-    private double calcularDescuentoRentaConBonificaciones(double sueldoTotal) {
-        if (sueldoTotal <= 472.00) {
-            return 0.0;
-        } else if (sueldoTotal <= 895.24) {
-            return (sueldoTotal - 472.00) * 0.10;
-        } else if (sueldoTotal <= 2038.10) {
-            return 42.32 + ((sueldoTotal - 895.24) * 0.20);
-        } else {
-            return 270.90 + ((sueldoTotal - 2038.10) * 0.30);
-        }
-    }
-    
-   
     @Override
     public String getTipoEmpleado() {
         return "GERENTE";
     }
     
-  
     public String getResumenGerencial() {
         return String.format("Gerente %s - Depto: %s - Empleados a cargo: %d - Auto empresa: %s",
                 getNombreCompleto(), departamento, numeroEmpleadosACargo, 
                 tieneAutoEmpresa ? "Sí" : "No");
     }
-  
     
     @Override
     public String toString() {
@@ -142,14 +103,12 @@ public class Gerente extends Empleado {
             "Empleados a cargo: %d\n" +
             "Auto de empresa: %s\n" +
             "Bonificación por gestión: $%.2f\n" +
-            "Bonificación por auto: $%.2f\n" +
-            "Sueldo total con bonificaciones: $%.2f\n",
+            "Bonificación por auto: $%.2f\n",
             departamento,
             numeroEmpleadosACargo,
             tieneAutoEmpresa ? "Sí" : "No",
             calcularBonificacionGestion(),
-            calcularBonificacionAuto(),
-            calcularSueldoConBonificaciones()
+            calcularBonificacionAuto()
         ));
         
         if (!equiposACargo.isEmpty()) {
