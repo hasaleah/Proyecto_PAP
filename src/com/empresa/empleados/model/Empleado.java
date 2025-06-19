@@ -4,8 +4,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-//Clase base de Empleado
-
+// Clase base de Empleado
 public abstract class Empleado {
     // Atributos protegidos para que las clases hijas puedan acceder
     protected String nombres;
@@ -22,9 +21,7 @@ public abstract class Empleado {
     protected static final double DESCUENTO_ISSS = 0.075;  // 7.5%
     protected static final double DESCUENTO_AFP = 0.0775;  // 7.75%
     
-    
-    
-    //constructor de la clase
+    // Constructor de la clase
     public Empleado(String nombres, String primerApellido, String segundoApellido, 
                    String direccion, LocalDate fechaNacimiento, char sexo, 
                    String telefono, String email, double sueldoBase) {
@@ -61,9 +58,7 @@ public abstract class Empleado {
     public void setEmail(String email) { this.email = email; }
     public void setSueldoBase(double sueldoBase) { this.sueldoBase = sueldoBase; }
     
-   
-    
-    //Para calcular la edad del empleado
+    // Para calcular la edad del empleado
     public int calcularEdad() {
         return Period.between(fechaNacimiento, LocalDate.now()).getYears();
     }
@@ -73,15 +68,14 @@ public abstract class Empleado {
         return nombres + " " + primerApellido + " " + segundoApellido;
     }
     
-    //Calcula el descuento de ISSS
-
-    public double calcularDescuentoISSS() {
-        return sueldoBase * DESCUENTO_ISSS;
+    // Calcula el descuento de ISSS
+    public double calcularDescuentoISSS(double sueldoTotal) {
+        return sueldoTotal * DESCUENTO_ISSS;
     }
     
-    //Calcula el descuento de AFP
-    public double calcularDescuentoAFP() {
-        return sueldoBase * DESCUENTO_AFP;
+    // Calcula el descuento de AFP
+    public double calcularDescuentoAFP(double sueldoTotal) {
+        return sueldoTotal * DESCUENTO_AFP;
     }
     
     /**
@@ -91,49 +85,47 @@ public abstract class Empleado {
      * De $895.25 a $2,038.10 - $42.32 + 20% sobre el exceso de $895.24
      * Más de $2,038.10 - $270.90 + 30% sobre el exceso de $2,038.10
      */
-    public double calcularDescuentoRenta() {
-        if (sueldoBase <= 472.00) {
+    public double calcularDescuentoRenta(double sueldoTotal) {
+        if (sueldoTotal <= 472.00) {
             return 0.0;
-        } else if (sueldoBase <= 895.24) {
-            return (sueldoBase - 472.00) * 0.10;
-        } else if (sueldoBase <= 2038.10) {
-            return 42.32 + ((sueldoBase - 895.24) * 0.20);
+        } else if (sueldoTotal <= 895.24) {
+            return (sueldoTotal - 472.00) * 0.10;
+        } else if (sueldoTotal <= 2038.10) {
+            return 42.32 + ((sueldoTotal - 895.24) * 0.20);
         } else {
-            return 270.90 + ((sueldoBase - 2038.10) * 0.30);
+            return 270.90 + ((sueldoTotal - 2038.10) * 0.30);
         }
     }
     
-    //Calcula el total de descuentos
-    public double calcularTotalDescuentos() {
-        return calcularDescuentoISSS() + calcularDescuentoAFP() + calcularDescuentoRenta();
+    // Calcula el total de descuentos
+    public double calcularTotalDescuentos(double sueldoTotal) {
+        return calcularDescuentoISSS(sueldoTotal) + calcularDescuentoAFP(sueldoTotal) + calcularDescuentoRenta(sueldoTotal);
     }
     
-    //Calcula el salario neto (después de descuentos)
+    // Método abstracto para calcular bonificaciones, implementado por las subclases
+    public abstract double calcularBonificaciones();
+    
+    // Calcula el sueldo total incluyendo bonificaciones
+    public double calcularSueldoConBonificaciones() {
+        return sueldoBase + calcularBonificaciones();
+    }
+    
+    // Calcula el salario neto (después de descuentos, considerando bonificaciones)
     public double calcularSalarioNeto() {
-        return sueldoBase - calcularTotalDescuentos();
+        double sueldoConBonificaciones = calcularSueldoConBonificaciones();
+        return sueldoConBonificaciones - calcularTotalDescuentos(sueldoConBonificaciones);
     }
     
     /**
      * Método que debe ser implementado por las clases hijas
-     * para identificar el tipo de empleado segun la consulta
+     * para identificar el tipo de empleado según la consulta
      */
     public abstract String getTipoEmpleado();
-    
-    
-    
-    /**
-     * Método que debe ser implementado por las clases hijas
-     * para calcular el sueldo total incluyendo bonificaciones
-     * @return Sueldo total con bonificaciones
-     */
-    public abstract double calcularSueldoConBonificaciones();
-    
-  
-    //Método toString para mostrar información del empleado
     
     @Override
     public String toString() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        double sueldoConBonificaciones = calcularSueldoConBonificaciones();
         return String.format(
             "=== %s ===\n" +
             "Nombre: %s\n" +
@@ -143,6 +135,8 @@ public abstract class Empleado {
             "Teléfono: %s\n" +
             "Email: %s\n" +
             "Sueldo Base: $%.2f\n" +
+            "Bonificaciones: $%.2f\n" +
+            "Sueldo Total: $%.2f\n" +
             "Descuento ISSS (7.5%%): $%.2f\n" +
             "Descuento AFP (7.75%%): $%.2f\n" +
             "Descuento Renta: $%.2f\n" +
@@ -157,10 +151,12 @@ public abstract class Empleado {
             telefono,
             email,
             sueldoBase,
-            calcularDescuentoISSS(),
-            calcularDescuentoAFP(),
-            calcularDescuentoRenta(),
-            calcularTotalDescuentos(),
+            calcularBonificaciones(),
+            sueldoConBonificaciones,
+            calcularDescuentoISSS(sueldoConBonificaciones),
+            calcularDescuentoAFP(sueldoConBonificaciones),
+            calcularDescuentoRenta(sueldoConBonificaciones),
+            calcularTotalDescuentos(sueldoConBonificaciones),
             calcularSalarioNeto()
         );
     }
