@@ -23,8 +23,4 @@ Bienvenido al **Sistema de Gestión de Empleados**, una aplicación Java diseña
 - **Entorno**: No requiere dependencias externas; usa solo la biblioteca estándar de Java.
 - **IDE (opcional)**: Compatible con Eclipse, IntelliJ IDEA, o cualquier editor que soporte Java.
 
-## Instalación y Ejecución
-1. **Clonar el repositorio**:
-   ```bash
-   git clone https://github.com/tu-usuario/sistema-empleados.git
-   cd sistema-empleados
+
