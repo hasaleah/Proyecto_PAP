@@ -2,7 +2,8 @@
 
 <img src="ElysiumHR -logo.png" alt="ElysiumHR logo" align="right" width="360">
 
-Bienvenido al **ElysiumHR,** el sistema de gestión de empleados creado con Java, diseñado para gestionar información de empleados en una empresa. Este sistema permite cargar datos iniciales de empleados, calcular sueldos netos con bonificaciones y descuentos, ordenar empleados por diferentes criterios, y generar reportes básicos. La aplicación está estructurada en una arquitectura modular para facilitar el mantenimiento y la escalabilidad, con soporte para crecimiento futuro, como la adición de nuevos empleados y la gestión de equipos de trabajo.
+Bienvenido al **ElysiumHR,** el sistema de gestión de empleados creado con Java, diseñado para gestionar información de empleados en una empresa. Este sistema permite cargar datos iniciales de empleados, calcular sueldos netos con bonificaciones y descuentos, ordenar empleados por diferentes criterios, y generar reportes básicos. 
+<br>La aplicación está estructurada en una arquitectura modular para facilitar el mantenimiento y la escalabilidad, con soporte para crecimiento futuro, como la adición de nuevos empleados y la gestión de equipos de trabajo.
 <br>
 ## Características
 - **Gestión de empleados**: Soporta diferentes roles (Gerente, Jefe de Área, Supervisor, Técnico) con atributos específicos y cálculos personalizados de bonificaciones.
