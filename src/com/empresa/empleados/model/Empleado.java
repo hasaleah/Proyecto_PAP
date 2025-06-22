@@ -18,8 +18,8 @@ public abstract class Empleado {
     protected double sueldoBase;
     
     // Constantes para los descuentos
-    protected static final double DESCUENTO_ISSS = 0.075;  // 7.5%
-    protected static final double DESCUENTO_AFP = 0.0775;  // 7.75%
+    protected static final double DESCUENTO_ISSS = 0.075;  
+    protected static final double DESCUENTO_AFP = 0.0775;  
     
     // Constructor de la clase
     public Empleado(String nombres, String primerApellido, String segundoApellido, 
@@ -117,8 +117,7 @@ public abstract class Empleado {
     }
     
     /**
-     * Método que debe ser implementado por las clases hijas
-     * para identificar el tipo de empleado según la consulta
+     * Método que debe ser implementado por las clases hijas para identificar el tipo de empleado según la consulta
      */
     public abstract String getTipoEmpleado();
     

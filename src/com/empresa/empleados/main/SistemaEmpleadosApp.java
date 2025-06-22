@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 /**
- * Clase principal de la aplicación de gestión de empleados.
+ * Clase principal de la aplicación de gestión de empleados
  */
 public class SistemaEmpleadosApp {
     private static final Scanner scanner = new Scanner(System.in);

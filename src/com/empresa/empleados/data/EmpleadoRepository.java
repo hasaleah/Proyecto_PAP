@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * Repositorio para gestionar la persistencia de empleados
- * Proporciona operaciones CRUD y consultas específicas
+
  */
 public class EmpleadoRepository {
     
@@ -184,7 +184,6 @@ public class EmpleadoRepository {
     
     /**
      * Obtiene solo los gerentes
-     * @return Lista de gerentes
      */
     public List<Gerente> obtenerGerentes() {
         return empleados.stream()
@@ -195,7 +194,6 @@ public class EmpleadoRepository {
     
     /**
      * Obtiene solo los jefes de área
-     * @return Lista de jefes de área
      */
     public List<JefeArea> obtenerJefesArea() {
         return empleados.stream()
@@ -206,7 +204,6 @@ public class EmpleadoRepository {
     
     /**
      * Obtiene solo los supervisores
-     * @return Lista de supervisores
      */
     public List<Supervisor> obtenerSupervisores() {
         return empleados.stream()
@@ -229,7 +226,6 @@ public class EmpleadoRepository {
     /**
      * Obtiene empleados que cumplen años en un mes específico
      * @param mes Mes del año (1-12)
-     * @return Lista de empleados que cumplen años en el mes
      */
     public List<Empleado> obtenerCumpleañosPorMes(int mes) {
         if (mes < 1 || mes > 12) {

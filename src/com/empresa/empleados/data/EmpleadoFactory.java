@@ -14,9 +14,7 @@ import java.util.List;
  */
 public class EmpleadoFactory {
 
-    /**
-     * Enum para los tipos de empleado soportados.
-     */
+   
     public enum TipoEmpleado {
         GERENTE,
         JEFE_AREA,
