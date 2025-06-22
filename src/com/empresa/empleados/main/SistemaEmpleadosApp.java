@@ -33,7 +33,7 @@ public class SistemaEmpleadosApp {
         }
     }
 
-    // Resto del código sin cambios
+    
     private static void mostrarMenu() {
         boolean salir = false;
 
