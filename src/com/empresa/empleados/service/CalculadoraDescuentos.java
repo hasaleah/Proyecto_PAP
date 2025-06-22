@@ -1,8 +1,7 @@
 package com.empresa.empleados.service;
 
 /**
- * Clase utilitaria para el cálculo de descuentos de ley en El Salvador
- * Centraliza todos los cálculos de descuentos para mantener consistencia
+ * Clase utilitaria para el cálculo de descuentos de ley 
  */
 public class CalculadoraDescuentos {
     
@@ -36,7 +35,6 @@ public class CalculadoraDescuentos {
     /**
      * Calcula el descuento de ISSS aplicando el tope correspondiente
      * @param sueldoBruto Sueldo bruto del empleado
-     * @return Monto del descuento ISSS
      */
     public static double calcularDescuentoISSS(double sueldoBruto) {
         if (sueldoBruto <= 0) return 0.0;
@@ -48,7 +46,6 @@ public class CalculadoraDescuentos {
     /**
      * Calcula el descuento de AFP aplicando el tope correspondiente
      * @param sueldoBruto Sueldo bruto del empleado
-     * @return Monto del descuento AFP
      */
     public static double calcularDescuentoAFP(double sueldoBruto) {
         if (sueldoBruto <= 0) return 0.0;
@@ -60,7 +57,6 @@ public class CalculadoraDescuentos {
     /**
      * Calcula el descuento de renta según la tabla progresiva de El Salvador
      * @param sueldoBruto Sueldo bruto del empleado
-     * @return Monto del descuento de renta
      */
     public static double calcularDescuentoRenta(double sueldoBruto) {
         if (sueldoBruto <= 0) return 0.0;
@@ -85,7 +81,6 @@ public class CalculadoraDescuentos {
     /**
      * Calcula el total de descuentos de ley
      * @param sueldoBruto Sueldo bruto del empleado
-     * @return Monto total de descuentos
      */
     public static double calcularTotalDescuentos(double sueldoBruto) {
         return calcularDescuentoISSS(sueldoBruto) + 
@@ -96,7 +91,6 @@ public class CalculadoraDescuentos {
     /**
      * Calcula el salario neto después de descuentos
      * @param sueldoBruto Sueldo bruto del empleado
-     * @return Salario neto
      */
     public static double calcularSalarioNeto(double sueldoBruto) {
         return sueldoBruto - calcularTotalDescuentos(sueldoBruto);
@@ -105,7 +99,6 @@ public class CalculadoraDescuentos {
     /**
      * Obtiene un resumen detallado de todos los descuentos
      * @param sueldoBruto Sueldo bruto del empleado
-     * @return ResumenDescuentos con todos los cálculos
      */
     public static ResumenDescuentos obtenerResumenDescuentos(double sueldoBruto) {
         double isss = calcularDescuentoISSS(sueldoBruto);
@@ -120,7 +113,6 @@ public class CalculadoraDescuentos {
     /**
      * Verifica si un sueldo está en el rango exento de renta
      * @param sueldoBruto Sueldo bruto a verificar
-     * @return true si está exento de renta
      */
     public static boolean esExentoDeRenta(double sueldoBruto) {
         return sueldoBruto <= RENTA_TRAMO_1_LIMITE;
@@ -129,7 +121,6 @@ public class CalculadoraDescuentos {
     /**
      * Obtiene el tramo de renta al que pertenece un sueldo
      * @param sueldoBruto Sueldo bruto
-     * @return Número del tramo (1-4)
      */
     public static int obtenerTramoRenta(double sueldoBruto) {
         if (sueldoBruto <= RENTA_TRAMO_1_LIMITE) return 1;

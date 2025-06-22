@@ -25,7 +25,7 @@ public class EmpleadoService {
     }
     
     /**
-     * Constructor que acepta una lista inicial de empleados
+     * Constructor lista inicial de empleados
      */
     public EmpleadoService(List<Empleado> empleados) {
         this.empleados = new ArrayList<>(empleados);
