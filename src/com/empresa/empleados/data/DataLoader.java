@@ -18,7 +18,7 @@ public class DataLoader {
     private final EmpleadoRepository repository;
     
     /**
-     * Constructor que inicializa el cargador con un repositorio
+     * Constructor que inicializa el cargador con un repositorio 
      * @param repository Repositorio donde se almacenarán los empleados
      */
     public DataLoader(EmpleadoRepository repository) {
