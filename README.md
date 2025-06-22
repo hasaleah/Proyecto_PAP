@@ -7,6 +7,7 @@ Bienvenido al **ElysiumHR,** el sistema de gestión de empleados creado con Java
 <br>La aplicación está estructurada en una arquitectura modular para facilitar el mantenimiento y la escalabilidad, con soporte para crecimiento futuro, como la adición de nuevos empleados y la gestión de equipos de trabajo.
 </div>
 <br>
+
 ## Características
 - **Gestión de empleados**: Soporta diferentes roles (Gerente, Jefe de Área, Supervisor, Técnico) con atributos específicos y cálculos personalizados de bonificaciones.
 - **Carga inicial de datos**: Inicializa el sistema con 25 empleados predefinidos (2 Gerentes, 3 Jefes de Área, 5 Supervisores, 15 Técnicos).
