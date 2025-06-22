@@ -38,7 +38,7 @@ public class EmpleadoRepository {
         }
     }
     
-    // =============== OPERACIONES CRUD ===============
+   
     
     /**
      * Agrega un nuevo empleado al repositorio
