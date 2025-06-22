@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
  * Utilidad para ordenar empleados y contarlos por rol.
  */
 public class OrdenadorEmpleados {
-
     
 	//Ordena la lista de empleados por primer apellido
     public static List<Empleado> ordenarPorPrimerApellido(List<Empleado> empleados, boolean ascending) {

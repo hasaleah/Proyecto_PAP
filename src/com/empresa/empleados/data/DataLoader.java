@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * Clase responsable de cargar datos iniciales de empleados
- * Pobla el repositorio con empleados predefinidos
  */
 public class DataLoader {
     
