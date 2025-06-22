@@ -1,6 +1,6 @@
-# ElysiumHR  
-
 <div>
+  
+# ElysiumHR  
 <img src="ElysiumHR -logo.png" alt="ElysiumHR logo" align="right" width="360">
 
 Bienvenido al **ElysiumHR,** el sistema de gestión de empleados creado con Java, diseñado para gestionar información de empleados en una empresa. Este sistema permite cargar datos iniciales de empleados, calcular sueldos netos con bonificaciones y descuentos, ordenar empleados por diferentes criterios, y generar reportes básicos. 
